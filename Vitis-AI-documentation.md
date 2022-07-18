@@ -374,15 +374,15 @@ Vitis-AI
 ...
 ```
 The main lines involving the Vitis-AI quantizer are lines 1, 25 and 26:
-* Line 1: Import `vitis_quantize`.
+* **Line 1**: Import `vitis_quantize`.
 ```
 |01| from tensorflow_model_optimization.quantization.keras import vitis_quantize
 ```
-* Line 25: The `vitis_quantize.VitisQuantizer` constructor takes in a pre-trained `.h5` model and returns a `VitisQuantizer` object for the model.
+* **Line 25**: The `vitis_quantize.VitisQuantizer` constructor takes in a pre-trained `.h5` model and returns a `VitisQuantizer` object for the model.
 ```
 |25| quantizer = vitis_quantize.VitisQuantizer(PRETRAINED_MODEL_PATH)
 ```
-* Line 26: Use the `VitisQuantizer` object's `quantize_model()` method to pass in the calibration dataset as a `tf.data.Dataset` object and quantize the model.
+* **Line 26**: Use the `VitisQuantizer` object's `quantize_model()` method to pass in the calibration dataset as a `tf.data.Dataset` object and quantize the model.
 ```
 |26| quantized_model = quantizer.quantize_model(calib_dataset=quant_dataset)
 ```
@@ -423,7 +423,7 @@ cp ../../../DPU-TRD-uz3eg_iocc/prj/Vitis/binary_container_1/sd_card/arch.json .
 Vitis-AI
 ├── 08-tf2_flow
 │   ├── files
-│   │   ├── arch.json
+│   │   ├── arch.json     <-- arch.json should end up here, alongside the .h5 file.
 │   │   ├── q_model.h5
 │   │   ...
 │   ...
@@ -483,7 +483,7 @@ Vitis-AI
 ...
 ```
 
-Vitis AI also has a series of prebuilt AI models known as the [modelzoo]](https://github.com/Xilinx/Vitis-AI/tree/1.3.2/models/AI-Model-Zoo/model-list). Each of the `.yaml` files in the repository contains the download links for the model.
+Vitis AI also has a series of prebuilt AI models known as the [modelzoo](https://github.com/Xilinx/Vitis-AI/tree/1.3.2/models/AI-Model-Zoo/model-list). Each of the `.yaml` files in the repository contains the download links for the model.
   * These models are **quantized but not compiled**. `vai_c` is needed to cross-compile the models.
   * This [link](https://github.com/Avnet/vitis/blob/2020.2/app/zoo/compile_modelzoo.sh) provides a script to automatically download and cross-compile all models in the modelzoo. However, do note that the `arch.json` file should be present in the same directory.
   * Most models in the modelzoo have their [corresponding VART application](https://github.com/Xilinx/Vitis-AI/tree/1.3.2/demo/VART) prepared by Xilinx for calling the model on the target board. These VART applications are available in either C++ or Python. Note that C++ VART applications will have to be compiled using the `build.sh` scripts present.
@@ -534,7 +534,8 @@ python app_mt.py dogs-v-cats-cnn.xmodel test
 
 # Common Issues
 ## Docker Permission Denied
-**This section is adapted from this [StackOverflow tread](https://stackoverflow.com/questions/48957195/how-to-fix-docker-got-permission-denied-issue).**
+*This section is adapted from this [StackOverflow tread](https://stackoverflow.com/questions/48957195/how-to-fix-docker-got-permission-denied-issue).*
+<br/>
 A common error encountered when running Docker commands is the `permissions denied` error:
 ```
 $~: docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: 
@@ -565,4 +566,4 @@ source [XILINX UNIFIED SOFTWARE PLATFORM INSTALLATION DIRECTORY]/Vivado/2020.2/s
 ```
 
 ## `AttributeError: module 'xir' has no attribute 'Graph'` error when running application on target
-Remove the `xir` directory and the `runner.so` file under the `/usr/lib/python3.7/site-packages` directory of the SD card.
+Remove the `xir` directory and the `runner.so` file under the `/usr/lib/python3.7/site-packages` directory of the SD card. See [Github comment](https://github.com/Xilinx/Vitis-AI/issues/280#issuecomment-768794051).

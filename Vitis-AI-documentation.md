@@ -363,7 +363,7 @@ If you encounter the `/bin/Vivado: Command not found`, it is likely that the `se
 To quantize and compile TensorFlow2 models in Vitis-AI, the pre-trained model should be a `.h5` file. For this guide, we will be using the pretrained model `f_model.h5` provided under the `08-tf2_flow/files/pretrained`.
 
 ## 4.1. Quantizing The Model
-We will be using the [simplified quantizer file]("./my_quantizer.py") named `my_quantizer.py`. This file should be placed wthin the `08-tf2_flow/files` directory:
+We will be using the [simplified quantizer file](https://github.com/teoyuqi/Running-Vitis-AI-on-Avnet-UltraZed-EG-IOCC/blob/main/my_quantize.py) named `my_quantizer.py`. This file should be placed wthin the `08-tf2_flow/files` directory:
 ```
 Vitis-AI
 ├── 08-tf2_flow

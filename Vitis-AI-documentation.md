@@ -120,10 +120,10 @@ tar -zxvf xilinx-zynqmp-common-v2020.2.tar.gz
 
 ## 1.2. Setting up the workspace
   1. Create a workspace directory containing the following items:    
-    * [Avnet UltraZed-EG IOCC base Vitis Platform Project (extracted)](#Avnet-Ultrazed-EG-IOCC-base-Vitis-Platform-Project-download)
-    * [Xilinx Vitis-AI Git repository v1.3.2](#Xilinx-Vitis-AI-git-repository-download)
-    * [Xilinx Vitis-AI-Tutorials Git repository v1.3](#Xilinx-Vitis-AI-tutorials-git-repository-download)
-    * [Xilinx ZYNQMP common image (extracted)](#Xilinx-ZYNQMP-Common-Image)
+     * [Avnet UltraZed-EG IOCC base Vitis Platform Project (extracted)](#Avnet-Ultrazed-EG-IOCC-base-Vitis-Platform-Project-download)
+     * [Xilinx Vitis-AI Git repository v1.3.2](#Xilinx-Vitis-AI-git-repository-download)
+     * [Xilinx Vitis-AI-Tutorials Git repository v1.3](#Xilinx-Vitis-AI-tutorials-git-repository-download)
+     * [Xilinx ZYNQMP common image (extracted)](#Xilinx-ZYNQMP-Common-Image)
   ```
     ├── uz3eg_iocc_base
     ├── Vitis-AI
@@ -440,10 +440,10 @@ conda activate vitis-ai-tensorflow2
 ```
 
 4. Compile the quantized model using the `vai_c_tensorflow2` command in the Docker image. Note the following flags and their usages
-  * --model : Specify the path to the quantized `.h5` model after this flag.
-  * --arch : Specify the path to the `arch.json` file after this flag. This file can be foudn in the binary container generated [earlier](#3-creating-the-bootable-sd-card-image).
-  * --output_dir : Specify the output path of the compiled `.xmodel` file after this flag.
-  * --net_name : Specify the compiled model's name after this flag
+   * --model : Specify the path to the quantized `.h5` model after this flag.
+   * --arch : Specify the path to the `arch.json` file after this flag. This file can be foudn in the binary container generated [earlier](#3-creating-the-bootable-sd-card-image).
+   * --output_dir : Specify the output path of the compiled `.xmodel` file after this flag.
+   * --net_name : Specify the compiled model's name after this flag
 ```
 # Return to directory with quantized model
 cd 08-tf2_flow/files
@@ -502,10 +502,10 @@ sudo dd bs=4M if=${DPU_TRD_HOME}/prj/Vitis/binary_container1/uz3eg_iocc_base.img
 4. Remove the `xir` directory and the `runner.so` file under the `/usr/lib/python3.7/site-packages` directory.
 
 5. Copy the following files over to the SD card as well:
-  * Cross-compiled `dogs-v-cats-cnn.xmodel` from `${VITIS_AI_HOME}/08-tf2_flow/files`
-  * VART application `app_mt.py` from `${VITIS_AI_HOME}/08-tf2_flow/files/application/app_mt.py`
-  * `test` directory with the test data from `${VITIS_AI_HOME}/08-tf2_flow/files/test`
-  * `dpu_sw_optimize.tar.gz` file from `${TRD_HOME}/app/dpu_sw_optimize.tar.gz`
+   * Cross-compiled `dogs-v-cats-cnn.xmodel` from `${VITIS_AI_HOME}/08-tf2_flow/files`
+   * VART application `app_mt.py` from `${VITIS_AI_HOME}/08-tf2_flow/files/application/app_mt.py`
+   * `test` directory with the test data from `${VITIS_AI_HOME}/08-tf2_flow/files/test`
+   * `dpu_sw_optimize.tar.gz` file from `${TRD_HOME}/app/dpu_sw_optimize.tar.gz`
 
 # 6. Booting Up The Board
 1. Insert the SD card prepared [earlier](#5-setting-up-the-sd-card) in the board and power it up.
@@ -524,8 +524,8 @@ cd ../..
 ```
 
 4. The models can now be executed using a command of the following format:
-  * C++ VART applications: `[VART APPLICATION] [XMODEL] [DATA]`
-  * Python VART applications: `python [VART APPLICATION] [XMODEL] [DATA]`
+   * C++ VART applications: `[VART APPLICATION] [XMODEL] [DATA]`
+   * Python VART applications: `python [VART APPLICATION] [XMODEL] [DATA]`
 
 For out case, this would be:
 ```

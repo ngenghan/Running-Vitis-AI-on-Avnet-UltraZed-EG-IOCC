@@ -566,4 +566,4 @@ source [XILINX UNIFIED SOFTWARE PLATFORM INSTALLATION DIRECTORY]/Vivado/2020.2/s
 ```
 
 ## `AttributeError: module 'xir' has no attribute 'Graph'` error when running application on target
-Remove the `xir` directory and the `runner.so` file under the `/usr/lib/python3.7/site-packages` directory of the SD card. See [Github comment](https://github.com/Xilinx/Vitis-AI/issues/280#issuecomment-768794051).
+Remove the `xir` directory and the `runner.so` file under the `/usr/lib/python3.7/site-packages` directory of the SD card. *See [Github comment](https://github.com/Xilinx/Vitis-AI/issues/280#issuecomment-768794051).*

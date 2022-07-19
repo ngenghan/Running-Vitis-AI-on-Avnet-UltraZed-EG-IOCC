@@ -163,10 +163,10 @@ tar -zxvf xilinx-zynqmp-common-v2020.2.tar.gz
  
 ## 1.3. Setting up the environment variables 
 This section will be about the set up of the environment variables. This step is crucial in ensuring that the scripts and executables provided by the Vitis-AI repository work properly. Create the following environments:
-    * `VITIS_AI_HOME`: **Absolute** path of the Vitis-AI Git repository
-    * `SDX_PLATFORM`: **Absolute** path of the `.xpfm` file in the Avnet UltraZed-EG IOCC Base Vitis Platform Project 
-    * `TRD_HOME`: **Absolute** path of the DPU-TRD-uz3eg_iocc directory created earlier 
-    * `EDGE_COMMON_SW`:**Absolute** path of the Xilinx Zynqmp common image 
+  * `VITIS_AI_HOME`: **Absolute** path of the Vitis-AI Git repository
+  * `SDX_PLATFORM`: **Absolute** path of the `.xpfm` file in the Avnet UltraZed-EG IOCC Base Vitis Platform Project 
+  * `TRD_HOME`: **Absolute** path of the DPU-TRD-uz3eg_iocc directory created earlier 
+  * `EDGE_COMMON_SW`:**Absolute** path of the Xilinx Zynqmp common image 
 
 Run the following command from the workspace directory [created earlier](#12-setting-up-the-workspace):
 ```

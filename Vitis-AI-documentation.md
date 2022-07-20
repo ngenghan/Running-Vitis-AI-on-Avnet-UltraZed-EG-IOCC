@@ -173,7 +173,7 @@ Run the following command from the workspace directory [created earlier](#12-set
 export VITIS_AI_HOME=${PWD}/Vitis-AI
 export SDX_PLATFORM=${PWD}/uz3eg_iocc_base/uz3eg_iocc_base.xpfm
 export TRD_HOME=${PWD}/DPU-TRD-uz3eg_iocc
-export EDGE_COMMON_SW=${PWD}/xilinx-zynqmp-common-image-v2020.2
+export EDGE_COMMON_SW=${PWD}/xilinx-zynqmp-common-v2020.2
  ```
 
 We are now ready to begin configuring the DPU. 
@@ -351,13 +351,15 @@ DPU-TRD-uz3eg_iocc/prj/Vitis/binary_container_1 directory:
 │   ├── rootfs.tar.gz
 │   └── uz3eg_iocc_base.hwh
 ├── uz3eg_iocc_base.bif
-├── uz3eg_iocc_base.img             # SD card image can be found here
+├── sd_card.img                      # SD card image can be found here
 ├── v++_link_dpu_guidance.json
 └── v++_link_dpu_guidance.pb
 
 ```
-
-If you encounter the `/bin/Vivado: Command not found`, it is likely that the `settings64.sh` files within the Xilinx Unfied Software Platform installation directories have yet to be `source`-ed. Refer to [here](#binvivado--command-not-found-error-when-building-sd-card-image).
+Note:
+* If you encounter the `/bin/Vivado: Command not found` error, refer to [here](#binvivado--command-not-found-error-when-building-sd-card-image).
+* If you encounter errors regarding a missing **platform project**, refer to [here](#no-valid-platform-was-found-error-when-building-sd-card-image)
+* If you encounter errors regarding a missing **common image** or **rootfs**, refer to [here](#rootfs-error-when-building-sd-card-image)
 
 # 4. Running the TensorFlow2 application on target
 To quantize and compile TensorFlow2 models in Vitis-AI, the pre-trained model should be a `.h5` file. For this guide, we will be using the pretrained model `f_model.h5` provided under the `08-tf2_flow/files/pretrained`.
@@ -493,7 +495,7 @@ Vitis AI also has a series of prebuilt AI models known as the [modelzoo](https:/
 1. Insert and mount the SD card. Next, use the Linux `dd` tool to burn the `.img` file in the binary container onto the SD card. 
 ``` 
 # Replace sd{X} with the partition which the SD card was mounted in.
-sudo dd bs=4M if=${DPU_TRD_HOME}/prj/Vitis/binary_container1/uz3eg_iocc_base.img of=/dev/sd{X} status=progress conv=fsync
+sudo dd bs=4M if=${DPU_TRD_HOME}/prj/Vitis/binary_container1/sd_card.img of=/dev/sd{X} status=progress conv=fsync
 ```
 2. Extract the [vitis_ai_2020.2-r1.3.2.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_2020.2-r1.3.2.tar.gz) file downloaded during the [VART set up](#vitis-ai-runtime-vart-set-up) earlier. Copy the `etc/*` and `usr/*` files over to `/usr` and `/etc` directories of the SD card's RootFS partition respectively.
 
@@ -563,6 +565,40 @@ It is likely that the settings64.sh files in the installation directory of the X
 source [XILINX UNIFIED SOFTWARE PLATFORM INSTALLATION DIRECTORY]/Vitis/2020.2/settings64.sh
 source [XILINX UNIFIED SOFTWARE PLATFORM INSTALLATION DIRECTORY]/Vitis_HLS/2020.2/settings64.sh
 source [XILINX UNIFIED SOFTWARE PLATFORM INSTALLATION DIRECTORY]/Vivado/2020.2/settings64.sh
+```
+
+## `No valid platform was found` error when building SD card image
+```
+# A possible variation of the error.
+ERROR: [v++ 60-1258] No valid platform was found that matches {SOME PATH}. Please make sure that the platform is specified correctly, and the platform has the right version number. The platform repo paths are:
+	{SOME PATH}
+The valid platforms found from the above repo paths are:
+  {SOME PATH}
+```
+The compilation for the SD card image requires the base platform project to be downloaded. If you encounter errors requesting for the "platform", ensure that you have [downloaded the base platform project](#avnet-ultrazed-eg-iocc-base-vitis-platform-project-download) for the UZ3EG. Extract the download. There is a `.xpfm` file in the downloaded folder and make sure you have pointed to it with the `SDX_PLATFORM` [environment variable](#13-setting-up-the-environment-variables).
+```
+├── hw
+├── sw
+└── uz3eg_iocc_base.xpfm   <-- Point the environment variable to this file
+
+```
+```
+# Repace {DOWNLOAD PATH} with the actual path where the platform project is in.
+export SDX_PLATFORM={DOWNLOAD PATH}/uz3eg_iocc_base/uz3eg_iocc_base.xpfm
+```
+
+## `rootfs` error when building SD card image
+```
+# A possible variation of the error.
+ERROR: [v++ 60-2254] File specified by package.root_fs option is not valid: {SOME PATH}
+ERROR: [v++ 60-702] Failed to finish packaging
+INFO: [v++ 60-1653] Closing dispatch client.
+make: *** [package] Error 1
+```
+The compiler relies on the Xilinx ZYNQMP Common Image for building the root file system of the target's Linux kernel. If you encounter issues regarding `root_fs`, `package.root_fs` or `rootfs.ext4`, ensure that the Xilinx ZYNQMP Common Image has been [downloaded](#xilinx-zynqmp-common-image-download). Next, ensure that the download has been extracted, and that the `EDGE_COMMON_SW` [environment variable](#13-setting-up-the-environment-variables) is pointing to it.
+```
+# Repace {DOWNLOAD PATH} with the actual path where the common image is in.
+export EDGE_COMMON_SW={DOWNLOAD PATH}/xilinx-zynqmp-common-v2020.2
 ```
 
 ## `AttributeError: module 'xir' has no attribute 'Graph'` error when running application on target

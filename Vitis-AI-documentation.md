@@ -173,7 +173,7 @@ Run the following command from the workspace directory [created earlier](#12-set
 export VITIS_AI_HOME=${PWD}/Vitis-AI
 export SDX_PLATFORM=${PWD}/uz3eg_iocc_base/uz3eg_iocc_base.xpfm
 export TRD_HOME=${PWD}/DPU-TRD-uz3eg_iocc
-export EDGE_COMMON_SW=${PWD}/xilinx-zynqmp-common-image-v2020.2
+export EDGE_COMMON_SW=${PWD}/xilinx-zynqmp-common-v2020.2
  ```
 
 We are now ready to begin configuring the DPU. 

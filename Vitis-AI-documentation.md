@@ -351,7 +351,7 @@ DPU-TRD-uz3eg_iocc/prj/Vitis/binary_container_1 directory:
 │   ├── rootfs.tar.gz
 │   └── uz3eg_iocc_base.hwh
 ├── uz3eg_iocc_base.bif
-├── uz3eg_iocc_base.img             # SD card image can be found here
+├── sd_card.img                      # SD card image can be found here
 ├── v++_link_dpu_guidance.json
 └── v++_link_dpu_guidance.pb
 
@@ -493,7 +493,7 @@ Vitis AI also has a series of prebuilt AI models known as the [modelzoo](https:/
 1. Insert and mount the SD card. Next, use the Linux `dd` tool to burn the `.img` file in the binary container onto the SD card. 
 ``` 
 # Replace sd{X} with the partition which the SD card was mounted in.
-sudo dd bs=4M if=${DPU_TRD_HOME}/prj/Vitis/binary_container1/uz3eg_iocc_base.img of=/dev/sd{X} status=progress conv=fsync
+sudo dd bs=4M if=${DPU_TRD_HOME}/prj/Vitis/binary_container1/sd_card.img of=/dev/sd{X} status=progress conv=fsync
 ```
 2. Extract the [vitis_ai_2020.2-r1.3.2.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_2020.2-r1.3.2.tar.gz) file downloaded during the [VART set up](#vitis-ai-runtime-vart-set-up) earlier. Copy the `etc/*` and `usr/*` files over to `/usr` and `/etc` directories of the SD card's RootFS partition respectively.
 

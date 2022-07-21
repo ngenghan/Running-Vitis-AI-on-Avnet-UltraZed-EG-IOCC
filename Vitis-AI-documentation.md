@@ -105,9 +105,9 @@ git clone -b 1.3.2 --recurse-submodules https://github.com/Xilinx/Vitis-AI.git
 ```
 
 ### **Xilinx Vitis-AI-Tutorials Git Repository Download**
-Clone branch 1.3.2 of the [Vitis-AI repository](https://github.com/Xilinx/Vitis-AI-Tutorials/tree/1.3) onto the local host.
+Clone branch 1.3 of the [Vitis-AI repository](https://github.com/Xilinx/Vitis-AI-Tutorials/tree/1.3) onto the local host.
 ```
-git clone -b 1.3.2 --recurse-submodules https://github.com/Xilinx/Vitis-AI-Tutorials.git
+git clone -b 1.3 --recurse-submodules https://github.com/Xilinx/Vitis-AI-Tutorials.git
 ```
 
 ### **Xilinx ZYNQMP Common Image Download**

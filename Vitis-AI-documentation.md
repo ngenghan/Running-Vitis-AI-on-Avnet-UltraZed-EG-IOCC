@@ -144,7 +144,7 @@ tar -zxvf xilinx-zynqmp-common-v2020.2.tar.gz
   cp -r ./Vitis-AI-Tutorials/Design_Tutorials/08-tf2_flow ./Vitis-AI
   ```
 
-  4. Move the [Dogs vs Cats dataset](#dogs-vs-cats-data-download) into the `08-tf2_flow/files` directory.
+  4. Move the [Dogs vs Cats dataset](#dogs-vs-cats-data-download) into the `08-tf2_flow/files` directory. Note that if using (a)Default example run_all.sh later, the .zip should be placed in the directory without unzipping, and if using (b)my_quantize.sh later, the test1.zip within the dogs-vs-cats.zip should be unzipped to the directory too
 
   Your workspace should look something like this now:
   ```

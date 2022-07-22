@@ -404,6 +404,11 @@ Enter the `08-tf2_flow/files` directory:
 cd 08-tf2_flow/files
 ```
 
+First run the default compilation for the base example (the latter step will not run if this is not performed)
+```
+(vitis-ai-tensorflow2) Vitis-AI /workspace > source run_all.sh
+```
+
 Run `my_quantize.py`.
 ```
 python my_quantize.py
@@ -461,7 +466,7 @@ This generates a `dogs-v-cats-cnn.xmodel` binary for the target board.
 
 5. For the purpose of this guide, we will generate a small dataset for the model as well.
 ```
-python target.py --image_dir test --target_dir target2 --num_images 1000
+python target.py --image_dir test1 --target_dir target2 --num_images 1000
 ```
 
 6. Exit the Docker environment:

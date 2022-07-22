@@ -503,7 +503,7 @@ sudo dd bs=4M if=${DPU_TRD_HOME}/prj/Vitis/binary_container1/sd_card.img of=/dev
 
 4. Remove the `xir` directory and the `runner.so` file under the `/usr/lib/python3.7/site-packages` directory.
 
-5. Copy the following files over to the SD card as well:
+5. Copy the following files over to the SD card as well*:
    * Cross-compiled `dogs-v-cats-cnn.xmodel` from `${VITIS_AI_HOME}/08-tf2_flow/files`
    * VART application `app_mt.py` from `${VITIS_AI_HOME}/08-tf2_flow/files/application/app_mt.py`
    * `test` directory with the test data from `${VITIS_AI_HOME}/08-tf2_flow/files/test`
@@ -529,7 +529,7 @@ cd ../..
    * C++ VART applications: `[VART APPLICATION] [XMODEL] [DATA]`
    * Python VART applications: `python [VART APPLICATION] [XMODEL] [DATA]`
 
-For out case, this would be:
+For out case, this would be^:
 ```
 python app_mt.py dogs-v-cats-cnn.xmodel test
 ```
